@@ -128,9 +128,7 @@ class BotcontrolPlugin(b3.plugin.Plugin):
         self.debug('BotControlEvent: onDisconnect called')
         if event.client is None:
             return
-        self.verbose('outputing event...')
-        self.verbose('event = %s', event)
-        self.verbose(vars(event.client))
+
         if event.client.bot:
             self.verbose('bot noticed. searching for bot (guid = %s) in list...', event.client.guid)
             if event.client.guid in self._botList:
@@ -147,9 +145,7 @@ class BotcontrolPlugin(b3.plugin.Plugin):
         self.debug('BotControlEvent: onConnect called')
         if event.client is None:
             return
-        self.verbose('outputing event...')
-        self.verbose('event = %s', event)
-        self.verbose(vars(event.client))
+
         if event.client.bot:
             self.verbose('bot found and registered (guid = %s, name = %s)', event.client.guid, event.client.name)
             self._botList[event.client.guid] = event.client
@@ -162,9 +158,7 @@ class BotcontrolPlugin(b3.plugin.Plugin):
         self.debug('BotControlEvent: onJoin called')
         if event.client is None:
             return
-        self.verbose('outputing event...')
-        self.verbose('event = %s', event)
-        self.verbose(vars(event.client))
+
         if event.client.bot:
             self.verbose('bot found and registered (guid = %s, name = %s)', event.client.guid, event.client.name)
             self._botList[event.client.guid] = event.client
@@ -231,7 +225,6 @@ class BotcontrolPlugin(b3.plugin.Plugin):
         #search for bot
         _found = None
         for k,b in self._botList.iteritems():
-            self.verbose('%s - %s;', k, b)
             if data.lower() in b.name.lower():
                 self.verbose('Bot found (%s);  Kicking...', b)
                 g = b.guid.lower()
@@ -256,7 +249,6 @@ class BotcontrolPlugin(b3.plugin.Plugin):
         self.debug('BotControlEvent: KickBotAll command called')
 
         for k,b in self._botList.iteritems():
-            self.verbose('%s - %s;', k, b)
             g = b.guid.lower()
             g = g.replace('bot', '')
             client.message('Kicking bot (%s)...' % b.name)
