@@ -1,4 +1,4 @@
-<!-- BotcontrolPlugin Config File - Dan Caldwell 2015 -->
+<!-- BotcontrolPlugin Config File - 0.3.5 - Dan Caldwell 2015 -->
 <configuration plugin="botcontrol">
 	<settings name="settings">
     	<!-- Minimum level needed to use bot commands -->
