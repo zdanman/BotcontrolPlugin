@@ -27,7 +27,6 @@ import b3.plugin
 import b3.events
 import b3.clients
 import b3.functions
-import json
 
 import re
 import StringIO
@@ -36,7 +35,6 @@ import time
 import random
 import copy
 
-from b3.functions import sanitizeMe
 from ConfigParser import NoOptionError
 
 ########################################################################################################################
