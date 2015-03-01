@@ -2,7 +2,7 @@
 BigBrotherBot - Bot Control Plugin for Insurgency
 
 Known Issues:
-- EVT_CLIENT_DISCONNECT and KICK events are not getting fired for bots currently so list is simply clear on game exit event
+- EVT_CLIENT_DISCONNECT and KICK events are not getting fired for bots currently so list is simply cleared on game exit event
 
 Current commands:
 
