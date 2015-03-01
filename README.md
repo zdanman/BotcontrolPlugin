@@ -3,7 +3,7 @@ BigBrotherBot - Bot Control Plugin for Insurgency
 
 Known Anomalies:
 - EVT_CLIENT_DISCONNECT and KICK events are not getting fired for bots currently so list is simply cleared on game exit event
-- When the plugin first starts, it may take a minute or two of playing before all bots become registered
+- When the plugin first starts, it may take a minute or two of playing before all bots become registered with the plugin
 
 Current commands:
 
