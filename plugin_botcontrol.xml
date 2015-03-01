@@ -1,0 +1,7 @@
+<!-- BotcontrolPlugin Config File - Dan Caldwell 2015 -->
+<configuration plugin="botcontrol">
+	<settings name="settings">
+    	<!-- Minimum level needed to use bot commands -->
+		<set name="min_level_cmd">40</set>
+	</settings>
+</configuration>
