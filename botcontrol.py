@@ -19,7 +19,7 @@
 #
 
 __author__ = 'Dan Caldwell'
-__version__ = '0.3.5'
+__version__ = '0.4'
 
 import b3
 import b3.cron
@@ -166,7 +166,7 @@ class BotcontrolPlugin(b3.plugin.Plugin):
 
     def cmd_AddBot(self, data, client, cmd=None):
         """
-        Add one or more bots to a team
+        Add one or more bots to a team. Syntax: !ab [number, optional]
         """
         self.debug('BotControlEvent: AddBot command called')
 
@@ -183,25 +183,50 @@ class BotcontrolPlugin(b3.plugin.Plugin):
             _num = 20
 
         self.console.say('Adding %s bot(s)...' % _num)
-        self.console.output.write('ins_bot_add %s' % _num)
+        i = 0
+        while i < _num:
+            self.console.output.write('ins_bot_add 1')
+            i = i + 1
+            time.sleep(2) # delays for 1 second
+        
+        client.message('Done adding bots.')
 
         return
 
 
     def cmd_KickBotTeam(self, data, client, cmd=None):
         """
-        Kick a bot from a team
+        Kick a bot from a team. Ex: !kbt ins
         """
         # b3.TEAM_RED = 2 (security), b3.TEAM_BLUE = 3 (insurgents)
 
         self.debug('BotControlEvent: KickBotTeam command called')
+        _number = ''.join(c for c in data if c.isdigit())
+        self.debug('BotControlEvent: KickBotTeam command called 2 "%s"' % _number)
+        _num = 1
+        if len(_number) > 0:
+            _num = int(_number)
+        self.debug('BotControlEvent: KickBotTeam command called 3')
+        if _num < 1:
+            _num = 1
+
+        self.debug('BotControlEvent: KickBotTeam command called 4')
 
         if 'ins' in data:
-            client.message('issuing bot kick from Insurgents')
-            self.console.output.write('ins_bot_kick_t2')
+            client.message('kicking %s bot(s) from Insurgents' % _num)
+            while _num > 0:
+                self.console.output.write('ins_bot_kick_t2')
+                _num = _num - 1
+                time.sleep(1) # delays for 1/2 second
+            client.message('KickBotTeam Complete')
+
         elif 'sec' in data:
-            client.message('issuing bot kick from Security')
-            self.console.output.write('ins_bot_kick_t1')
+            client.message('kicking %s bot(s) from Security' % _num)
+            while _num > 0:
+                self.console.output.write('ins_bot_kick_t1')
+                _num = _num - 1
+                time.sleep(1) # delays for 1/2 second
+            client.message('KickBotTeam Complete')
         else:
             client.message('No team specified')
             client.message('use sec or ins')
@@ -212,7 +237,7 @@ class BotcontrolPlugin(b3.plugin.Plugin):
 
     def cmd_KickBot(self, data, client, cmd=None):
         """
-        Kick a bot
+        Kick a bot. Ex: !kb ted
         """
         self.debug('BotControlEvent: KickBot command called')
 
@@ -230,7 +255,7 @@ class BotcontrolPlugin(b3.plugin.Plugin):
                 g = b.guid.lower()
                 g = g.replace('bot', '')
                 client.message('Kicking bot (%s)...' % b.name)
-                self.console.output.write('kickid %s' % g)
+                self.console.output.write('sm_kick #%s' % g)
                 _found = k
                 break
 
@@ -252,7 +277,8 @@ class BotcontrolPlugin(b3.plugin.Plugin):
             g = b.guid.lower()
             g = g.replace('bot', '')
             client.message('Kicking bot (%s)...' % b.name)
-            self.console.output.write('kickid %s' % g)
+            self.console.output.write('sm_kick #%s' % g)
+            time.sleep(0.5) # delays for 1/4 second
 
         self._botList.clear()
         
