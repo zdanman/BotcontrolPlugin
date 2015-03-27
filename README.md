@@ -1,10 +1,12 @@
 # BotcontrolPlugin
 
-0.4 Notes
+Version 0.4 Notes
 
 BigBrotherBot - Bot Control Plugin for Insurgency
 
 Change Log:
+
+0.4
 - added delay between rcon commands so as not to overload server
 - added number param to the !kbt command so you can multiple bots with one command.
 
