@@ -1,5 +1,12 @@
 # BotcontrolPlugin
+
+0.4 Notes
+
 BigBrotherBot - Bot Control Plugin for Insurgency
+
+Change Log:
+- added delay between rcon commands so as not to overload server
+- added number param to the !kbt command so you can multiple bots with one command.
 
 Known Anomalies:
 - EVT_CLIENT_DISCONNECT and KICK events are not getting fired for bots currently so list is simply cleared on game exit event
@@ -16,7 +23,7 @@ kicks all bots on record and clears list
 
 'botkickteam' or 'kbt'
 kicks a bot from certain team
-!kbt ['ins' or 'sec']
+!kbt ['ins' or 'sec'] [number, optional]
 
 'botadd' or 'ab'
 adds one or more bots
